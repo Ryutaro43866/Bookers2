@@ -1,27 +1,26 @@
 <%= render 'list', books: @books %>
 <div class="col-md-8 offset-md-1">
   <h2>Book detail</h2>
-  <tabel class="table">
+  <table class="table">
     <tbody>
       <tr>
         <td>
-          <%= link_to user_path(params[:id]) do %>
-            <%= @user.name %>
+          <%= link_to user_path(@books.user.id) do %>
+          <%= image_tag @books.user.get_profile_image(100,100) %><br>
+          <%= @books.user.name %>
           <% end %>
         </td>
         <td>
-          <%= link_to book_path(params[:id]) do %>
-            <%= @books.title %>
-          <% end %>
+          <%= link_to @books.title, book_path(params[:id]) %>
         </td>
-        <td></td>
+        <td><%= @books.body %></td>
         <td>
-
+          <%= link_to "Edit", edit_book_path(params[:id]), class: 'btn btn-sm btn-success' %>
         </td>
         <td>
-
+          <%= link_to "Destroy", book_path, method: :delete, class: 'btn btn-sm btn-danger', "data-confirm" => "本当に消しますか？" %>
         </td>
       </tr>
     </tbody>
-  </tabel>
+  </table>
 </div>
