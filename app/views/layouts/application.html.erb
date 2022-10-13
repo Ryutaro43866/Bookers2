@@ -73,20 +73,12 @@
     </header>
 
     <main>
-      <p id="notice"></p>
-      <% if user_signed_in? %>
-        <div class="container px-5 px-sm-0">
-          <div class="row">
-            <%= yield %>
-          </div>
-        </div>
-      <% else %>
-        <div class="container">
-          <div class="row">
-            <%= yield %>
-          </div>
-        </div>
-      <% end %>
+      <p id="notice">
+        <% if flash[:notice] %>
+          <%= flash[:notice] %>
+        <% end %>
+      </p>
+      <%= yield %>
     </main>
 
     <footer>
